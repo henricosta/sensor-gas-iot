@@ -1,13 +1,86 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- <link rel="stylesheet" href="../static/bulma.min.css"> -->
+    <!-- <link rel="stylesheet" href="../static/styles.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
 </head>
+
 <body>
-    <h1>web page</h1>
+    <header class="hero is-primary is-small">
+        <div class="hero-body">
+            <h1 class="title">Projeto IoT</h1>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Sensor de vazamento de gás</h1>
+            <p class="subtitle">Últimas atualizações</p>
+
+            <div class="box">
+                <h2 class="title is-5">Último vazamento detectado:</h2>
+                <p>October 25, 2024 - 14:32</p>
+                <p><strong>Nível:</strong> Alto</p>
+                <p><strong>Valor:</strong> 3123124</p>
+            </div>
+
+            <div class="box" style="max-height: 500px; overflow-y: auto;">
+                <h2 class="title is-5">Leituras do Sensor</h2>
+                <ul id="message-list">
+                    <!-- Example messages for layout -->
+                    <li class="message-item">[Timestamp] </li>
+                    <li class="message-item has-text-danger">[Timestamp] ⚠️ Gas leak detected!</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- <script src="../static/script.js"></script> -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+
 </html>
