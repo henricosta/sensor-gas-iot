@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, render_template, Response
-
+from flask import Flask, jsonify, render_template, Response, request
+from datetime import datetime
 import database
 
 app = Flask(__name__)
@@ -19,6 +19,18 @@ def recuperar_dados():
     ]
 
     return jsonify({ 'data': data })
+
+
+@app.route('/api/salvar-dados', methods=['GET'])
+def salvar_dados():
+    value = request.args.get('value')
+    if value is None:
+        return Response(status=400)
+    
+    timestamp = datetime.now()
+    database.salvar_dados_leitura(value, timestamp)
+    
+    return Response(status=200)
 
 
 @app.route('/', methods=['GET'])
