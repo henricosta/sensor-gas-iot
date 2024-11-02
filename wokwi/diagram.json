@@ -1,7 +1,26 @@
 {
-    "version": 1,
-    "author": "Anonymous maker",
-    "editor": "wokwi",
-    "parts": [ { "id": "esp", "type": "board-esp32-devkit-c-v4" } ],
-    "connections": [ [ "esp:TX", "$serialMonitor:RX", "" ], [ "esp:RX", "$serialMonitor:TX", "" ] ]
-  }
+  "version": 1,
+  "author": "Sibi Kutty",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -39.7, "left": -153.8, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 22.58,
+      "left": 119.35,
+      "attrs": { "color": "red" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "pot1:GND", "esp:GND.2", "black", [ "v118.93", "h130.63" ] ],
+    [ "pot1:VCC", "esp:VIN", "red", [ "v130.27", "h73.3", "v-25.33" ] ],
+    [ "led1:C", "esp:GND.1", "green", [ "v83.05", "h-33.5" ] ],
+    [ "led1:A", "esp:D2", "green", [ "v67.55", "h-42.69" ] ],
+    [ "pot1:SIG", "esp:D32", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
