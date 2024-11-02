@@ -1,15 +1,13 @@
-import sqlite3
+from sqlite_utils import Database
 
-conn = sqlite3.connect('db.sqlite')
-cursor = conn.cursor()
+db = Database('db.sqlite')
 
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS leituras (
-    id INTEGER PRIMARY KEY,
-    timestamp TEXT,
-    value TEXT              
+db["leituras"].create(
+    {
+        'id': 'INTEGER',
+        'timestamp': 'TEXT',
+        'value': 'TEXT'
+    },
+    pk="id",
+    if_not_exists=True
 )
-""")
-
-
-conn.close()
