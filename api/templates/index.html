@@ -32,46 +32,46 @@
             <div class="box" style="max-height: 500px; overflow-y: auto;">
                 <h2 class="title is-5">Leituras do Sensor</h2>
                 <ul id="message-list">
-                    <!-- Example messages for layout -->
-                    <li class="message-item">[Timestamp] </li>
-                    <li class="message-item has-text-danger">[Timestamp] ⚠️ Gas leak detected!</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
-                    <li class="message-item">[Timestamp] nivel de leitura</li>
+                    <script>
+                        let lastTimestamp = null
+
+                        $(document).ready(() => {
+                            $.ajax({
+                                url: 'http://localhost:8080/api/recuperar-dados',
+                                method: 'GET',
+                                success: (response) => {
+                                    $('#message-list').empty()
+
+                                    response['data'].forEach(leitura => {
+                                        const listItem = $('<li class="message-item"></li>').text(`[${leitura.timestamp}] ${leitura.value}`);
+                                        $('#message-list').append(listItem);
+                                    });
+
+                                    if (response['data'].length > 0) {
+                                        lastTimestamp = response['data'][0].timestamp;
+                                    }
+                                }
+                            })
+                        })
+
+
+                        setInterval(() => {
+                            $.ajax({
+                                url: 'http://localhost:8080/api/ultima-leitura',
+                                method: 'GET',
+                                success: (response) => {
+                                    const latestReading = response['data'][0];
+
+                                    if (latestReading.timestamp !== lastTimestamp) {
+                                        lastTimestamp = latestReading.timestamp;
+
+                                        const listItem = $('<li class="message-item"></li>').text(`[${latestReading.timestamp}] ${latestReading.value}`);
+                                        $('#message-list').prepend(listItem);
+                                    }
+                                }
+                            });
+                        }, 5000); // 5000 milliseconds = 5 seconds
+                    </script>
                 </ul>
             </div>
 
