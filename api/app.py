@@ -3,6 +3,8 @@ from flask_cors import CORS
 from datetime import datetime
 import database
 
+VALOR_VAZAMENTO = 70
+
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -18,7 +20,7 @@ def recuperar_ultima_leitura():
     if row is None:
         return jsonify({'data': []})
     
-    data = [{'id': row['id'], 'timestamp': row['timestamp'], 'value': row['value']}]
+    data = [{'id': row['id'], 'timestamp': row['timestamp'], 'value': row['value'], 'vazamento': row['vazamento']}]
     
     return jsonify({'data': data})
 
@@ -33,7 +35,7 @@ def recuperar_dados():
         rows = database.get_leituras()
     
     data = [
-        {'id': row['id'], 'timestamp': row['timestamp'], 'value': row['value']}
+        {'id': row['id'], 'timestamp': row['timestamp'], 'value': row['value'], 'vazamento': row['vazamento']}
         for row in rows
     ]
 
@@ -47,7 +49,7 @@ def salvar_dados():
         return Response(status=400)
     
     timestamp = datetime.now()
-    database.salvar_dados_leitura(value, timestamp)
+    database.salvar_dados_leitura(value, float(value) > VALOR_VAZAMENTO, timestamp)
     
     return Response(status=200)
 
