@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "localtunnel": "^2.0.2"
+  },
+  "scripts": {
+    "start": "lt --port 8080"
   }
 }
