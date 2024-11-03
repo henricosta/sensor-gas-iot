@@ -8,11 +8,12 @@ def get_database_connection():
     return Database(DATABASE)
 
 
-def salvar_dados_leitura(value, timestamp):
+def salvar_dados_leitura(value, vazamento, timestamp):
     db = get_database_connection()
     db[TABELA].insert({
         "value": value,
-        "timestamp": timestamp
+        "timestamp": timestamp,
+        'vazamento': vazamento
     })
 
 

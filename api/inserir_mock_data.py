@@ -2,6 +2,8 @@ from sqlite_utils import Database
 from datetime import datetime, timedelta
 import random
 
+VALOR_VAZAMENTO = 70
+
 DATABASE = 'db.sqlite'
 TABELA = 'leituras'
 
@@ -21,7 +23,8 @@ def insert_mock_data(num_entries=500):
 
         db[TABELA].insert({
             "timestamp": timestamp,
-            "value": value
+            "value": value,
+            'vazamento': float(value) > VALOR_VAZAMENTO
         })
 
     print(f"Inserted {num_entries} mock entries into the '{TABELA}' table in '{DATABASE}'.")

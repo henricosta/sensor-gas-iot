@@ -6,7 +6,8 @@ db["leituras"].create(
     {
         'id': 'INTEGER',
         'timestamp': 'TEXT',
-        'value': 'TEXT'
+        'value': 'TEXT',
+        'vazamento': 'INTEGER'
     },
     pk="id",
     if_not_exists=True
