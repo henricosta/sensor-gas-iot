@@ -7,7 +7,6 @@
     <!-- <link rel="stylesheet" href="../static/bulma.min.css"> -->
     <!-- <link rel="stylesheet" href="../static/styles.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
 </head>
@@ -34,79 +33,16 @@
             <div class="box" style="max-height: 500px; overflow-y: auto; margin-top: 20px;">
                 <h2 class="title is-5">Últimas leituras do Sensor</h2>
                 <ul id="message-list">
-                    <script>
-                        let lastTimestamp = null
-                        let ultimoVazamento = null
-
-                        function renderVazamento(uv) {
-                            if (uv != null) {
-                                const vazamentoComponent = `
-                                            <div class="box">
-                                                <h2 class="title is-5">Último vazamento detectado:</h2>
-                                                <p id="ultimo-vazamento-timestamp">${uv.timestamp}</p>
-                                                <p id="ultimo-vazamento-value"><strong>Valor:</strong> ${uv.value}</p>
-                                            </div>
-                                        `
-
-                                $('#ultimo-vazamento-container').empty().append(vazamentoComponent)
-                            }
-                        }
-
-                        $(document).ready(() => {
-                            $.ajax({
-                                url: 'http://localhost:8080/api/recuperar-dados',
-                                method: 'GET',
-                                success: (response) => {
-                                    $('#message-list').empty()
-
-                                    response['data'].forEach(leitura => {
-                                        const listItem = $('<li class="message-item"></li>').text(`[${leitura.timestamp}] ${leitura.value}`);
-                                        $('#message-list').append(listItem);
-
-                                        if (leitura.vazamento === 1) {
-                                            ultimoVazamento = leitura
-                                        }
-                                    });
-
-                                    if (response['data'].length > 0) {
-                                        lastTimestamp = response['data'][0].timestamp;
-                                    }
-
-                                    renderVazamento(ultimoVazamento)
-                                }
-                            })
-                        })
-
-
-                        setInterval(() => {
-                            $.ajax({
-                                url: 'http://localhost:8080/api/ultima-leitura',
-                                method: 'GET',
-                                success: (response) => {
-                                    const latestReading = response['data'][0];
-
-                                    if (latestReading.timestamp !== lastTimestamp) {
-                                        lastTimestamp = latestReading.timestamp;
-
-                                        const listItem = $('<li class="message-item"></li>').text(`[${latestReading.timestamp}] ${latestReading.value}`);
-                                        $('#message-list').prepend(listItem);
-                                    }
-
-                                    if (latestReading.vazamento === 1) {
-                                        ultimoVazamento = latestReading
-                                        renderVazamento(ultimoVazamento)
-                                    }
-                                }
-                            });
-                        }, 15000); // 5000 milliseconds = 5 seconds
-                    </script>
+                    
                 </ul>
             </div>
 
         </div>
     </section>
 
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <!-- <script src="../static/script.js"></script> -->
+    <script src="{{ url_for('static', filename='jquery-3.7.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 

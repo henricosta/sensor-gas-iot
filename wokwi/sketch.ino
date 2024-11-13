@@ -3,6 +3,7 @@
 
 const char* ssid = "Wokwi-GUEST";
 const char* pass = "";
+const char* identificador = 'placa_1'
 
 void setup() {
 
@@ -28,7 +29,7 @@ void loop() {
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
 
-    String url = "https://large-pets-work.loca.lt/api/salvar-dados?value=" + String(intensity);
+    String url = "https://large-pets-work.loca.lt/api/salvar-dados?value=" + String(intensity) + "&identificador=" + identificador;
     http.begin(url);
     http.GET();
     // int httpResponseCode = http.GET();

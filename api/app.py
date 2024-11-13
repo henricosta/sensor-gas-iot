@@ -20,7 +20,7 @@ def recuperar_ultima_leitura():
     if row is None:
         return jsonify({'data': []})
     
-    data = [{'id': row['id'], 'timestamp': row['timestamp'], 'value': row['value'], 'vazamento': row['vazamento']}]
+    data = [{'id': row['id'], 'timestamp': row['timestamp'], 'value': row['value'], 'vazamento': row['vazamento'], 'identificador': row['identificador']}]
     
     return jsonify({'data': data})
 
@@ -35,7 +35,7 @@ def recuperar_dados():
         rows = database.get_leituras()
     
     data = [
-        {'id': row['id'], 'timestamp': row['timestamp'], 'value': row['value'], 'vazamento': row['vazamento']}
+        {'id': row['id'], 'timestamp': row['timestamp'], 'value': row['value'], 'vazamento': row['vazamento'], 'identificador': row['identificador']}
         for row in rows
     ]
 
@@ -45,11 +45,13 @@ def recuperar_dados():
 @app.route('/api/salvar-dados', methods=['GET'])
 def salvar_dados():
     value = request.args.get('value')
+    identificador = request.args.get('identificador')
+    
     if value is None:
         return Response(status=400)
     
     timestamp = datetime.now()
-    database.salvar_dados_leitura(value, float(value) > VALOR_VAZAMENTO, timestamp)
+    database.salvar_dados_leitura(value=value, vazamento=float(value) > VALOR_VAZAMENTO,  identificador=identificador, timestamp=timestamp)
     
     return Response(status=200)
 

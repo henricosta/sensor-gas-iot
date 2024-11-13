@@ -6,11 +6,16 @@ VALOR_VAZAMENTO = 70
 
 DATABASE = 'db.sqlite'
 TABELA = 'leituras'
+TABELA_DISPOSITIVOS = 'dispositivos'
 
 def insert_mock_data(num_entries=500):
     db = Database(DATABASE)
 
     start_date = datetime.now() - timedelta(days=365)
+
+    db[TABELA_DISPOSITIVOS].insert({
+        'identificador': 'identificador_mock'
+    })
 
     for _ in range(num_entries):
         random_date = start_date + timedelta(
@@ -24,7 +29,8 @@ def insert_mock_data(num_entries=500):
         db[TABELA].insert({
             "timestamp": timestamp,
             "value": value,
-            'vazamento': float(value) > VALOR_VAZAMENTO
+            'vazamento': float(value) > VALOR_VAZAMENTO,
+            'identificador': 'identificador_mock'
         })
 
     print(f"Inserted {num_entries} mock entries into the '{TABELA}' table in '{DATABASE}'.")

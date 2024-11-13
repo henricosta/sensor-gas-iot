@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "author": "Sibi Kutty",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -39.7, "left": -153.8, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "pot1:GND", "esp:GND.2", "black", [ "v118.93", "h130.63" ] ],
+    [ "pot1:VCC", "esp:VIN", "red", [ "v130.27", "h73.3", "v-25.33" ] ],
+    [ "pot1:SIG", "esp:D32", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
