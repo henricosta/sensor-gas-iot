@@ -35,6 +35,18 @@ cd sensor-gas-iot
    pip install -r requirements.txt
    ```
 
+### 3. Configurar banco de dados
+
+1. Executar script para criar banco de dados:
+   ```bash
+   python api/create_database.py
+   ```
+
+2. (Opcional) Inserir dados de teste.
+   ```bash
+   python api/inserir_mock_data.py
+   ```
+
 ### 3. Iniciar a API
 
 Após a instalação das dependências, inicie a API executando o arquivo `app.py`, que está localizado em `api/`:
