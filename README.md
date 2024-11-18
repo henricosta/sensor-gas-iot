@@ -4,9 +4,9 @@ Este projeto contém uma API em Python e utiliza o **localtunnel** para expor o 
 
 ## Pré-requisitos
 
-- Python 3.8 ou superior
-- Node.js e npm
-- Virtualenv (ou outra ferramenta de ambientes virtuais para Python)
+- [Python 3.8 ou superior](https://www.python.org/downloads/)
+- [Node.js](https://nodejs.org/)
+- [Visual Studio Code](https://code.visualstudio.com/) (ou outro editor de código)
 
 ## Configuração
 
@@ -42,14 +42,17 @@ Após a instalação das dependências, inicie a API executando o arquivo `app.p
    python api/app.py
    ```
 
-### 4. Instalar o Localtunnel
+Após iniciar a API, você pode acessar a interface web no seu navegador através do endereço [http://localhost:8080](http://localhost:8080).
 
-**Em outro terminal**. Instale o Localtunnel localmente usando npm:
+# Testando a API usando a ESP32
+### 1. Instalar o Localtunnel
+
+Após configurar o ambiente. **Em outro terminal**, instale o Localtunnel localmente usando npm:
 ```bash
 npm install localtunnel
 ```
 
-### 5. Configurar o Tunnel com Localtunnel
+### 2. Configurar o Tunnel com Localtunnel
 
 Em uma nova janela do terminal, execute o Localtunnel para expor a API:
 
@@ -59,6 +62,18 @@ npx localtunnel --port 8080
 
 Depois disso acesse a url do projeto que é fornecido no terminal no navegador. Ou substituia a url no arquivo `sketch.ino` para testar ela pelo ESP32.
 
----
+### 3. Execute o código na placa
 
-Os arquivos do Wokwi estão na pasta `wokwi/` que incluem `diagram.json` e `sketch.ino`.
+Todos os componentes necessários estão no arquivo `esp32/diagram.json`
+
+#### Opção 1 - Testando na placa
+
+1. Compile o código `sketch.ino` usando a IDE do Arduino ou a plataforma de sua escolha.
+2. Substitua a URL da API no código `sketch.ino` pela URL fornecida pelo Localtunnel.
+3. Carregue o código na placa ESP32.
+4. Abra o monitor serial para verificar a saída e garantir que a ESP32 está se comunicando corretamente com a API.
+
+#### Opção 2 - Testando no Wokwi
+Os arquivos estão na pasta `esp32/`. O projeto também pode ser testado no Wokwi usando o `diagram.json`.
+
+---

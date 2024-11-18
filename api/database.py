@@ -9,9 +9,7 @@ def get_database_connection():
     return Database(DATABASE)
 
 
-def salvar_dados_leitura(value, vazamento, timestamp, identificador=None):
-    if identificador is None:
-        identificador = 'desconhecido'
+def salvar_dados_leitura(value, vazamento, timestamp, identificador='desconhecido'):
     
     if buscar_placa(identificador) is None:
         registrar_placa(identificador)
