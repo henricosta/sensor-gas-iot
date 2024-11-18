@@ -1,6 +1,12 @@
 let lastTimestamp = null
 let ultimoVazamento = null
 
+// const API_URL = 'https://localhost:8080'
+const API_URL = 'https://swift-eyes-yell.loca.lt'
+
+const API_URL_RECUPERAR_DADOS = API_URL + '/api/recuperar-dados'
+const API_URL_ULTIMA_LEITURA = API_URL + '/api/ultima-leitura'
+
 function formatDate(dateString) {
     const date = new Date(dateString);
     
@@ -33,13 +39,12 @@ function renderVazamento(uv) {
 
 $(document).ready(() => {
     $.ajax({
-        url: 'http://localhost:8080/api/recuperar-dados',
+        url: API_URL_RECUPERAR_DADOS,
         method: 'GET',
         success: (response) => {
             $('#message-list').empty()
 
             response['data'].forEach(leitura => {
-                console.log(leitura)
                 const listItem = $('<li class="message-item"></li>').text(`(${leitura.identificador}) [${formatDate(leitura.timestamp)}] - ${leitura.value}`);
                 $('#message-list').append(listItem);
 
@@ -60,7 +65,7 @@ $(document).ready(() => {
 
 setInterval(() => {
     $.ajax({
-        url: 'http://localhost:8080/api/ultima-leitura',
+        url: API_URL_ULTIMA_LEITURA,
         method: 'GET',
         success: (response) => {
             const latestReading = response['data'][0];
