@@ -89,3 +89,5 @@ Todos os componentes necessários estão no arquivo `esp32/diagram.json`
 Os arquivos estão na pasta `esp32/`. O projeto também pode ser testado no Wokwi usando o `diagram.json`.
 
 ---
+Slides do Projeto
+https://www.canva.com/design/DAGW62dvBjg/e0mM13dBjsf_yhbYCe_jqA/edit?utm_content=DAGW62dvBjg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
