@@ -2,9 +2,6 @@
 
 set -e
 
-echo "Installing Python dependencies..."
-pip install -r requirements.txt
-
 echo "Navigating to the api/ directory..."
 cd api/
 
