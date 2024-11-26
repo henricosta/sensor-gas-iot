@@ -57,7 +57,6 @@ yarn-error.log*
 
 # dotenv environment files
 .env
-.env.*
 
 # macOS
 .DS_Store

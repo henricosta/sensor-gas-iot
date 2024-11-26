@@ -1,7 +1,15 @@
+from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, Response, request
 from flask_cors import CORS
 from datetime import datetime
 import database
+
+import os
+
+load_dotenv()
+
+PORT=os.getenv('PORT')
+API_URL=os.getenv('API_URL')
 
 VALOR_VAZAMENTO = 70
 
@@ -58,7 +66,7 @@ def salvar_dados():
 
 @app.route('/', methods=['GET'])
 def home():
-    return render_template('index.html', API_URL='http://localhost:8080')
+    return render_template('index.html', API_URL=API_URL)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(debug=True, port=PORT)
