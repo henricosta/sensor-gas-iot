@@ -1,9 +1,6 @@
 let lastTimestamp = null
 let ultimoVazamento = null
-
-// const API_URL = 'https://localhost:8080'
-const API_URL = 'https://swift-eyes-yell.loca.lt'
-
+ 
 const API_URL_RECUPERAR_DADOS = API_URL + '/api/recuperar-dados'
 const API_URL_ULTIMA_LEITURA = API_URL + '/api/ultima-leitura'
 
