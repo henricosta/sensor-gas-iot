@@ -58,7 +58,7 @@ def salvar_dados():
 
 @app.route('/', methods=['GET'])
 def home():
-    return render_template('index.html')
+    return render_template('index.html', API_URL='http://localhost:8080')
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
