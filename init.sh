@@ -13,4 +13,4 @@ python create_database.py
 python inserir_mock_data.py
 
 echo "Starting the API..."
-python api.py
+python app.py
