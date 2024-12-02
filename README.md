@@ -74,19 +74,11 @@ npx localtunnel --port 8080
 
 Depois disso acesse a url do projeto que é fornecido no terminal no navegador. Ou substituia a url no arquivo `sketch.ino` para testar ela pelo ESP32.
 
-### 3. Execute o código na placa
+### 3. Executando o códiguo utilizando a plataforma [Wokwi](https://wokwi.com/)
 
-Todos os componentes necessários estão no arquivo `esp32/diagram.json`
+Substituia o código padrão pelo localizado no diretório `esp32/sketch.ino` e substitua o conteúdo do `diagram.json` pelos contidos no diretório `esp32/diagram.json`.
 
-#### Opção 1 - Testando na placa
-
-1. Compile o código `sketch.ino` usando a IDE do Arduino ou a plataforma de sua escolha.
-2. Substitua a URL da API no código `sketch.ino` pela URL fornecida pelo Localtunnel.
-3. Carregue o código na placa ESP32.
-4. Abra o monitor serial para verificar a saída e garantir que a ESP32 está se comunicando corretamente com a API.
-
-#### Opção 2 - Testando no Wokwi
-Os arquivos estão na pasta `esp32/`. O projeto também pode ser testado no Wokwi usando o `diagram.json`.
+A url dentro de `sketch.ino` deve ser substituída pela fornecida pelo localtunnel.
 
 ---
 Slides do Projeto
